@@ -45,7 +45,7 @@ class BasicControllerTest < ActionController::TestCase
   end
   
   def test_filter_access
-    assert !@controller.class.before_filters.empty?
+    assert !@controller.class.before_actions.empty?
     
     reader = Authorization::Reader::DSLReader.new
     reader.parse %{
@@ -198,7 +198,7 @@ end
 
 ##################
 class LoadMockObjectsController < MocksController
-  before_filter { @@load_method_call_count = 0 }
+  before_action { @@load_method_call_count = 0 }
   filter_access_to :show, :attribute_check => true, :model => LoadMockObject
   filter_access_to :edit, :attribute_check => true
   filter_access_to :update, :delete, :attribute_check => true,
